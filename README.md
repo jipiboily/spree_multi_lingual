@@ -1,7 +1,14 @@
 SpreeMultiLingual
 =================
 
-Introduction goes here.
+SpreeMultiLingual.languages to an array containing the languages you support.
+
+	SpreeMultiLingual.languages = ["fr", "en", "es"]
+  
+No fallback for now!
+
+
+Inspired from [https://github.com/tomash/spree_globalize](https://github.com/tomash/spree_globalize) (even took some pieces of code! Especially the "globalize_accessors" method.)
 
 
 Example
