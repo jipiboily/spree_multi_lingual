@@ -3,6 +3,12 @@
   window.spree_multi_lingual = {};
   window.spree_multi_lingual.translated_fields = <%= raw Spree::Product.translated_attribute_names.map { |f| "product_" + f.to_s } %>;
   window.spree_multi_lingual.backend_locale = "<%= I18n.locale %>";
+  window.spree_multi_lingual.translated_fields_values = [];
+  <% Spree::Product.translated_attribute_names.each do |f| %>
+    <% SpreeMultiLingual.languages.each do |lang| %>
+      window.spree_multi_lingual.translated_fields_values['<%= "product_" + f.to_s + "_" + lang %>'] = "<%= eval("@product." + f.to_s + "_" + lang) %>";
+    <% end %>
+  <% end %>
 </script>
 <% Spree::Product.translated_attribute_names.each do |field| %>
   <input name="translated_fields" value="product_<%= field %>">
