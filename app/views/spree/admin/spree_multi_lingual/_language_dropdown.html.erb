@@ -1,4 +1,9 @@
 <%= select("currently_modified_language", "lang", SpreeMultiLingual.languages.collect {|l| l}, {selected: I18n.locale}, {id: "spree_multi_lingual_dropdown"}) %>
+<script>
+  window.spree_multi_lingual = {};
+  window.spree_multi_lingual.translated_fields = <%= raw Spree::Product.translated_attribute_names.map { |f| "product_" + f.to_s } %>;
+  window.spree_multi_lingual.backend_locale = "<%= I18n.locale %>";
+</script>
 <% Spree::Product.translated_attribute_names.each do |field| %>
   <input name="translated_fields" value="product_<%= field %>">
 <% end %>
