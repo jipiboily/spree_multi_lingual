@@ -6,6 +6,7 @@ PATH
       easy_globalize3_accessors
       globalize3 (~> 0.2.0.beta8)
       i18n
+      routing-filter
       sass
       spree_core (~> 1.0.0)
 
@@ -160,6 +161,8 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    routing-filter (0.3.0)
+      actionpack
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
