@@ -3,6 +3,7 @@ PATH
   specs:
     spree_multi_lingual (0.1.0.alpha1)
       coffee-rails
+      easy_globalize3_accessors
       globalize3 (~> 0.2.0.beta8)
       i18n
       sass
@@ -78,6 +79,8 @@ GEM
       nokogiri (~> 1.5.0)
       rails (>= 3.0.9)
     diff-lcs (1.1.3)
+    easy_globalize3_accessors (1.2.0)
+      globalize3 (~> 0.2.0.beta1)
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
