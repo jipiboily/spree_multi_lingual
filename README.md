@@ -1,8 +1,8 @@
 SpreeMultiLingual
 =================
-This is a proof of concept for what could become a multi-lingual Spree store plugin.
+This is a proof of concept for what could become a multi-lingual Spree plugin.
 
-Warning: code quality is from so-so to poor. Just wanted to put out something before Spreeconf so we could discuss and maybe hack around it.
+Warning: code quality is so-so (could even be poor). Just wanted to put out something before Spreeconf so we could discuss and maybe hack around it.
 
 Notes
 -----
@@ -11,9 +11,9 @@ Set SpreeMultiLingual.languages to an array containing the languages you support
 
 	SpreeMultiLingual.languages = ["fr", "en", "es"]
   
-There is no fallback of default language for now!
+Warning: there is no fallback of default language for now!
 
-It uses Globalize3. Some code inspired from [https://github.com/tomash/spree_globalize](https://github.com/tomash/spree_globalize) (even took some pieces of code! Especially the "globalize_accessors" method. Why reinvent the wheel when you don't have to?)
+It uses Globalize3, easy_globalize3_accessors and routing-filter. Thanks to [Tomash](https://github.com/tomash) that told me about those two awesome gems: easy_globalize3_accessors and routing-filter.
 
 
 Example

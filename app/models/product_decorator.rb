@@ -1,4 +1,4 @@
 Spree::Product.class_eval do
-  translates :name, :description
-  globalize_accessors locales: SpreeMultiLingual.languages, attribtues: [:name, :description]
+  translates :name, :description, :meta_description, :meta_keywords
+  globalize_accessors locales: SpreeMultiLingual.languages, attribtues: [:name, :description, :meta_description ,:meta_keywords]
 end
