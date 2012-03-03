@@ -6,7 +6,7 @@
   window.spree_multi_lingual.translated_fields_values = [];
   <% Spree::Product.translated_attribute_names.each do |f| %>
     <% SpreeMultiLingual.languages.each do |lang| %>
-      window.spree_multi_lingual.translated_fields_values['<%= "product_" + f.to_s + "_" + lang %>'] = "<%= eval("@product." + f.to_s + "_" + lang) %>";
+      window.spree_multi_lingual.translated_fields_values['<%= "product_" + f.to_s + "_" + lang %>'] = "<%= eval("@product." + f.to_s + "_" + lang).gsub(/\r\n?/,"<br />") %>";
     <% end %>
   <% end %>
 </script>
