@@ -3,7 +3,8 @@ $(document).ready ->
     ml = new SpreeMultiLingual
     ml.change_language(@.value)
 
-class SpreeMultiLingual
+# declare the class in global scope so we can extend it from within our app
+class window.SpreeMultiLingual
   constructor: ->
     @translated_fields = window.spree_multi_lingual.translated_fields
     @default_locale = window.spree_multi_lingual.backend_locale
