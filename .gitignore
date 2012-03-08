@@ -9,3 +9,5 @@ nbproject
 *.swp
 spec/dummy
 .rvmrc
+.bundle
+.sass-cache

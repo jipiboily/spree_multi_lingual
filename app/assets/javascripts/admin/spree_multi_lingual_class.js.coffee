@@ -9,7 +9,7 @@ class window.SpreeMultiLingual
     @translated_fields = window.spree_multi_lingual.translated_fields
     @default_locale = window.spree_multi_lingual.backend_locale
     @current_locale = @default_locale
-        
+
   change_language: (locale) =>
     @current_locale = locale
     @make_sure_field_exists_for_language()
@@ -24,7 +24,7 @@ class window.SpreeMultiLingual
     $("#" + field).after(new_field)
     @add_localized_class(field_name)
     @add_localized_class(field, @default_locale)
-    
+
   make_sure_field_exists_for_language: =>
     for field in @translated_fields
       field_name = @localized_field_name(field)
@@ -34,7 +34,7 @@ class window.SpreeMultiLingual
   show_fields: =>
     $(".sml-localized-field").hide()
     $(".sml-localized-field-#{@current_locale}").show()
-    
+
   localized_field_name: (field) =>
     return (field + "_" + @current_locale) if @current_locale isnt @default_locale
     field
