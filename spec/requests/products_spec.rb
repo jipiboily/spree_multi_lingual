@@ -1,7 +1,8 @@
 require 'spec_helper'
 
-feature "admin edit i18n", :js => true do
+feature "Products multi lingual", :js => true do
   background do
+    I18n.stub(:available_locales).and_return [:en, :fr, :es]
     @product = Factory(:product, :name => "ror mug", :price => 30)
   end
 
