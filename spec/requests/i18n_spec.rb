@@ -28,6 +28,24 @@ feature "admin edit i18n", :js => true do
       page.should have_content("meta #{locale} desc")
       page.should have_content("#{locale} keywords")
     end
+  end
 
+  scenario "product permalink should be editable" do
+    visit spree.admin_products_path
+    click_link "Edit"
+
+    %w(fr en es).each do |locale|
+      select locale, :from => "spree_multi_lingual_dropdown"
+      suffix = "#{locale == "en" ? "" : "_#{locale}"}"
+      fill_in "product_permalink#{suffix}", :with => "ror-mug-#{locale}"
+      fill_in "product_name#{suffix}", :with => "ror mug #{locale}"
+    end
+    click_button "Update"
+
+    %w(fr en es).each do |locale|
+      visit "/locale/set?locale=#{locale}"
+      visit "/#{locale}/products/ror-mug-#{locale}"
+      page.should have_content "ror mug #{locale}"
+    end
   end
 end
