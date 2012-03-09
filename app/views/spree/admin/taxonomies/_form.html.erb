@@ -1,10 +1,8 @@
 <div data-hook="admin_inside_taxonomy_form">
-  <% SpreeMultiLingual.languages.each do |locale| %>
-    <% method_name = "name#{locale_suffix(locale)}"%>
-    <%= f.field_container locale.to_sym do %>
-      <%= f.label method_name, t(method_name) %> <span class="required">*</span><br />
-      <%= error_message_on :taxonomy, :name, :class => 'fullwidth title' %>
-      <%= text_field :taxonomy, method_name %>
-    <% end %>
+  <% method_name = "name#{locale_suffix(params[:lang])}"%>
+  <%= f.field_container method_name.to_sym do %>
+    <%= f.label method_name, t(method_name) %> <span class="required">*</span><br />
+    <%= error_message_on :taxonomy, :name, :class => 'fullwidth title' %>
+    <%= text_field :taxonomy, method_name %>
   <% end %>
 </div>

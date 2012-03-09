@@ -1,0 +1,5 @@
+<%= t(:taxonomy_edit) %>
+<% SpreeMultiLingual.languages.map do |locale| %>
+  <%= link_to(locale, edit_admin_taxonomy_path(@taxonomy, :lang => locale))-%>
+<% end.join("|") %>
+
