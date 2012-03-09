@@ -17,13 +17,14 @@ class window.SpreeMultiLingual
 
   duplicate_field: (field) =>
     field_name = @localized_field_name(field)
-    new_field_name_value = $("#" + field).attr("name").substring(0,$("#" + field).attr("name").length - 1) + "_" + @current_locale + "]"
-    new_field = $("#" + field).clone().attr("id", field_name).attr("name", new_field_name_value).removeClass("sml-localized-field-"+@default_locale)
-    value = eval("window.spree_multi_lingual.translated_fields_values['#{field_name}']")
-    new_field.val(value) if value
-    $("#" + field).after(new_field)
-    @add_localized_class(field_name)
-    @add_localized_class(field, @default_locale)
+    if $("#" + field)[0]
+      new_field_name_value = $("#" + field).attr("name").substring(0,$("#" + field).attr("name").length - 1) + "_" + @current_locale + "]"
+      new_field = $("#" + field).clone().attr("id", field_name).attr("name", new_field_name_value).removeClass("sml-localized-field-"+@default_locale)
+      value = eval("window.spree_multi_lingual.translated_fields_values['#{field_name}']")
+      new_field.val(value) if value
+      $("#" + field).after(new_field)
+      @add_localized_class(field_name)
+      @add_localized_class(field, @default_locale)
 
   make_sure_field_exists_for_language: =>
     for field in @translated_fields
