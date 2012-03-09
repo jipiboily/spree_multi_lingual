@@ -10,4 +10,5 @@ else
   gem "ruby-debug19"
 end
 
+gem 'awesome_print'
 gemspec

@@ -47,6 +47,7 @@ feature "Products multi lingual", :js => true do
 
       fill_in "taxon_name#{suffix}", :with => "TAXON - #{locale}"
       fill_in "taxon_description#{suffix}", :with => "TAXON Description - #{locale * 20}"
+      fill_in "taxon_permalink#{suffix}", :with => "taxon-#{locale}"
     end
 
     click_button "Update"
@@ -56,6 +57,9 @@ feature "Products multi lingual", :js => true do
       select locale, :from => "spree_multi_lingual_dropdown"
       page.should have_content("TAXON - #{locale}")
       page.should have_content("TAXON Description - #{locale * 20}")
+      visit "/t/taxon-#{locale}"
+      save_and_open_page
+      page.should have_content "Spree"
     end
 
   end
