@@ -53,14 +53,19 @@ feature "Products multi lingual", :js => true do
     click_button "Update"
 
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root)
+
+    # verify if the form has correct values
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
       page.should have_content("TAXON - #{locale}")
       page.should have_content("TAXON Description - #{locale * 20}")
-      visit "/t/taxon-#{locale}"
-      save_and_open_page
-      page.should have_content "Spree"
     end
 
+    # set local and ensure each page is visitable
+    %w(fr en es).each do |locale|
+      visit "/locale/set?locale=#{locale}"
+      visit "/t/taxon-#{locale}"
+      page.should have_content "TAXON - #{locale}"
+    end
   end
 end

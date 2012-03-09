@@ -1,0 +1,8 @@
+<%= render "spree/admin/shared/language_dropdown", :object => object-%>
+
+<!-- handle special case with taxon's permalink -->
+<script>
+<% SpreeMultiLingual.languages.each do |lang| %>
+  window.spree_multi_lingual.translated_fields_values['<%= "taxon_permalink_#{lang}" -%>'] = '<%= escape_javascript(object.send("permalink_#{lang}").split("/").last.gsub(/\r\n?/,"")) if !object.send("permalink_#{lang}").nil? -%>';
+<% end %>
+</script>

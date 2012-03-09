@@ -31,7 +31,6 @@ module Spree
       end
     end
 
-
     # Creates permalink based on Stringex's .to_url method
     def set_permalink
       if parent_id.nil?
