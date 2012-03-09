@@ -56,6 +56,7 @@ GEM
     addressable (2.2.7)
     archive-tar-minitar (0.5.2)
     arel (2.2.3)
+    awesome_print (1.0.2)
     braintree (2.14.0)
       builder (>= 2.0.0)
     builder (3.0.0)
@@ -230,6 +231,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   capybara (= 1.0.1)
   factory_girl
   ffaker
