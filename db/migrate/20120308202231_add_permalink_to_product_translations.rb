@@ -1,5 +1,7 @@
 class AddPermalinkToProductTranslations < ActiveRecord::Migration
   def change
-    add_column  :spree_product_translations, :permalink, :string
+    unless column_exists?(:spree_product_translations, :permalink, :string)
+      add_column  :spree_product_translations, :permalink, :string
+    end
   end
 end
