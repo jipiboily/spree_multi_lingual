@@ -1,16 +1,6 @@
 module Spree
   Taxon.class_eval do
     translates :name, :description, :permalink
-    globalize_accessors locales: SpreeMultiLingual.languages, attribtues: [:name, :description, :permalink]
-
-    def translations_for(attribute_name)
-      {}.tap do |attrs|
-        translations.select([attribute_name, :locale]).each do |attribute|
-          attr_name = "#{attribute_name}_#{attribute[:locale]}".to_sym
-          attrs[attr_name] = attribute[attribute_name]
-        end
-      end
-    end
 
     # Public : Permalink setter with multi language support
     #
