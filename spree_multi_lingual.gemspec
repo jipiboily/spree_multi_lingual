@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'i18n'
   s.add_dependency 'globalize3', '~> 0.2.0.beta8'
   s.add_dependency 'easy_globalize3_accessors'
-  s.add_dependency 'routing-filter'
+  # s.add_dependency 'routing-filter'
 
   s.add_dependency 'coffee-rails'
 

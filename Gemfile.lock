@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/MoritzMoritz/routing-filter.git
+  revision: c7d7791559da9882c275a5cf88e58afc35263e7f
+  branch: locale-exclusion
+  specs:
+    routing-filter (0.3.0)
+      actionpack
+
 PATH
   remote: .
   specs:
@@ -6,7 +14,6 @@ PATH
       easy_globalize3_accessors
       globalize3 (~> 0.2.0.beta8)
       i18n
-      routing-filter
       sass
       spree_core (~> 1.0.1)
 
@@ -165,8 +172,6 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
-    routing-filter (0.3.0)
-      actionpack
     rspec (2.8.0)
       rspec-core (~> 2.8.0)
       rspec-expectations (~> 2.8.0)
@@ -237,6 +242,7 @@ DEPENDENCIES
   ffaker
   launchy (= 2.0.5)
   mysql2
+  routing-filter!
   rspec-rails (~> 2.7)
   ruby-debug19
   spree_multi_lingual!
