@@ -59,6 +59,12 @@ run MyRailsApp::Application
 ## Use
 On views where there is translated fields, there should be a dropdown to switch currently edited locale. 
 
+Products:
+http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
+
+Taxons:
+![Taxon](http://i44.tinypic.com/dqir20.png)
+
 ### What is translated?
 
 For now :
