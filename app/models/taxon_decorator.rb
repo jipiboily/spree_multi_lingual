@@ -28,7 +28,6 @@ module Spree
       else
         parent_taxon = Taxon.find(parent_id)
         parent_taxon.translations_for(:permalink).each do |attribute|
-          ap attribute
           parent_permalink, locale = attribute[:permalink], attribute[:locale]
           permalink_locale = read_attribute(:permalink, :locale => locale)
           write_attribute(:permalink, [parent_permalink, (permalink_locale.blank? ? name.to_url : permalink_locale.split('/').last)].join('/'), :locale => locale)

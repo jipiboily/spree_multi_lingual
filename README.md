@@ -63,7 +63,12 @@ Products:
 http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
 
 Taxons:
+/!\ Using the taxonomy tree you can only edit another locale taxons name, to do so click on the links next to "Edit Taxonomy" to show the taxonomy for a given locale.
+If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.
+
+To edit taxons permalink please do as following:
 ![Taxon](http://i44.tinypic.com/dqir20.png)
+![TaxonEdit](http://i40.tinypic.com/v78lmt.png)
 
 ### What is translated?
 
