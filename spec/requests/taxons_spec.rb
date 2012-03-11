@@ -67,4 +67,16 @@ feature "Products multi lingual", :js => true do
       page.should have_content "TAXON - #{locale}"
     end
   end
+
+
+  scenario "by explicitly setting their locale, user should be redirected to the viewed link with the setted locale", :js => false do
+    pending "TODO ! cf locale_controller_decorator#set"
+
+    Factory(:taxon, :name => "Ruby on Rails", :permalink_fr => "ror-fr", :permalink_es => "ror-es", :permalink => "ror", :permalink_en => "ror")
+
+    get "/en/t/ror"
+    get "/fr/locale/set", {}, {'HTTP_REFERER' => 'http://example.com/en/t/ror', 'HTTP_HOST' => 'example.com'} #manually set 'HTTP_REFERER' AND 'HTTP_HOST'
+
+    response.should redirect_to("/fr/t/ror-fr")
+  end
 end
