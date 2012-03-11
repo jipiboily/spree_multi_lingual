@@ -5,7 +5,7 @@ module TranslatesWithAccessors
   end
 
   module InstanceMethods
-    def translations_for(attribute_name)
+    def attrs_translations_for(attribute_name)
       {}.tap do |attrs|
         translations.select([attribute_name, :locale]).each do |attribute|
           attr_name = "#{attribute_name}_#{attribute[:locale]}".to_sym
@@ -13,6 +13,16 @@ module TranslatesWithAccessors
         end
       end
     end
+
+    def translations_for(attribute_name)
+      [].tap do |attrs|
+        translations.select([attribute_name, :locale]).each do |attribute|
+          attr_name = "#{attribute_name}".to_sym
+          attrs << { attr_name => attribute[attribute_name], :locale => attribute[:locale].to_sym }
+        end
+      end
+    end
+
   end
 
   module ClassMethods

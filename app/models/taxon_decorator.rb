@@ -27,10 +27,13 @@ module Spree
         self.permalink = name.to_url if self.permalink.blank?
       else
         parent_taxon = Taxon.find(parent_id)
-        parent_taxon.translations_for(:permalink).each do |attribute_name, value|
-          send("#{attribute_name}=", [value, (self.permalink.blank? ? name.to_url : self.permalink.split('/').last)].join('/'))
+        parent_taxon.translations_for(:permalink).each do |attribute|
+          ap attribute
+          parent_permalink, locale = attribute[:permalink], attribute[:locale]
+          permalink_locale = read_attribute(:permalink, :locale => locale)
+          write_attribute(:permalink, [parent_permalink, (permalink_locale.blank? ? name.to_url : permalink_locale.split('/').last)].join('/'), :locale => locale)
         end
-        self.permalink = [parent_taxon.permalink, (self.permalink.blank? ? name.to_url : self.permalink.split('/').last)].join('/')
+        write_attribute :permalink, [parent_taxon.permalink, (self.permalink.blank? ? name.to_url : self.permalink.split('/').last)].join('/')
       end
     end
   end

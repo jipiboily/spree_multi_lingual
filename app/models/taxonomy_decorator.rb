@@ -5,7 +5,7 @@ module Spree
     private
     def set_name
       if self.root
-        self.root.update_attributes(translations_for(:name))
+        self.root.update_attributes(attrs_translations_for(:name))
       else
         self.root = Taxon.create!({ :taxonomy_id => self.id, :name => self.name })
       end

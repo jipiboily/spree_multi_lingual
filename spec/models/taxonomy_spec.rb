@@ -14,10 +14,18 @@ describe Spree::Taxonomy do
     root.name_fr.should == "Homme"
   end
 
-  describe "#translations_for" do
+  describe "#attrs_translations_for" do
     it "returns an hash of attributes" do
       taxonomy.update_attributes(:name_fr => "Homme")
-      taxonomy.translations_for(:name).should == {:name_en => "Man", :name_fr => "Homme"}
+      taxonomy.attrs_translations_for(:name).should == {:name_en => "Man", :name_fr => "Homme"}
     end
   end
+
+  describe "#translations_for" do
+    it "returns an array of attributes" do
+      taxonomy.update_attributes(:name_fr => "Homme")
+      taxonomy.translations_for(:name).should == [{ :name => "Man", :locale => :en }, { :name => "Homme", :locale => :fr }]
+    end
+  end
+
 end
