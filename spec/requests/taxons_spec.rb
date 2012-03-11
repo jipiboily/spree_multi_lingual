@@ -43,7 +43,7 @@ feature "Products multi lingual", :js => true do
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
 
-      suffix = "#{locale == "en" ? "" : "_#{locale}"}"
+      suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
 
       fill_in "taxon_name#{suffix}", :with => "TAXON - #{locale}"
       fill_in "taxon_description#{suffix}", :with => "TAXON Description - #{locale * 20}"
@@ -63,8 +63,7 @@ feature "Products multi lingual", :js => true do
 
     # set local and ensure each page is visitable
     %w(fr en es).each do |locale|
-      visit "/locale/set?locale=#{locale}"
-      visit "/t/taxon-#{locale}"
+      visit "/#{locale}/t/taxon-#{locale}"
       page.should have_content "TAXON - #{locale}"
     end
   end

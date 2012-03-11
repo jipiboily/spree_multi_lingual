@@ -32,6 +32,18 @@ Add Javascript to your "app/assets/admin/all.js"
 
 	//= require admin/spree_multi_lingual
 
+If you want to use browser language detection using rack-contrib Locale :
+
+```ruby
+# config.ru
+require 'rack'
+require 'rack/contrib'
+
+use Rack::Locale
+
+require ::File.expand_path('../config/environment',  __FILE__)
+run MyRailsApp::Application
+```
 
 ## Use
 On views where there is translated fields, there should be a dropdown to switch currently edited locale. 

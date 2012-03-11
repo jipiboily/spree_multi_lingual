@@ -44,9 +44,10 @@ feature "Products multi lingual", :js => true do
     click_button "Update"
 
     %w(fr en es).each do |locale|
-      visit "/locale/set?locale=#{locale}"
       visit "/#{locale}/products/ror-mug-#{locale}"
       page.should have_content "ror mug #{locale}"
     end
+    # reset locale to en to avoid colision with other tests
+    visit "/en/products/ror-mug-en"
   end
 end
