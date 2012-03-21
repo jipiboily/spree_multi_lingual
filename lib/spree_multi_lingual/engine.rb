@@ -1,6 +1,6 @@
 module SpreeMultiLingual
   mattr_accessor :languages
-  @@languages = ["en"]
+  @@languages = [:en]
 
   class Engine < Rails::Engine
     engine_name 'spree_multi_lingual'
