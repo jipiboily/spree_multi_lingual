@@ -13,5 +13,6 @@ end
 gem 'awesome_print'
 
 gem 'routing-filter', :git => "git://github.com/MoritzMoritz/routing-filter.git", :branch => "locale-exclusion"
+gem 'spree', :git => "git://github.com/spree/spree"
 
 gemspec
