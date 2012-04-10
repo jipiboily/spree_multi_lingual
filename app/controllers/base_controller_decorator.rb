@@ -26,4 +26,11 @@ Spree::Admin::BaseController.class_eval do
     locale ||= I18n.locale
     I18n.locale == locale.to_sym ? "".to_sym : "_"+ locale
   end
+
+  private
+
+  def set_user_language
+    I18n.locale = Spree::Config[:default_locale].to_sym
+  end
+
 end
