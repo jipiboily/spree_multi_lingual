@@ -91,15 +91,14 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 1. Make taxons multi languages editable from the taxonomy tree
 2. Dynamically show taxon full permalink depending on dropdown language selected : Taxons#edit
 2. Travis-CI
-3. Admin default locale ?
-4. Add things to translate:
+3. Add things to translate:
 	- Option types
 	- Option values
 	- Properties
 	- Alt text on images
-5. Dropdown or something to change locale
-6. Fallback
-7. Rake task for store that already have users
+4. Dropdown or something to change locale
+5. Fallback
+6. Rake task for store that already have users
 
 ## Testing
 
