@@ -8,6 +8,7 @@ before_script:
 
 script:
   - "export DISPLAY=:99.0"
+  - "bundle exec rspec spec"
 
 branches:
   only:
