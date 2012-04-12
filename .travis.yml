@@ -13,4 +13,3 @@ script:
 branches:
   only:
     - 1-0-stable
-    - master
