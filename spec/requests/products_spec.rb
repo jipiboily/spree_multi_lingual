@@ -4,6 +4,7 @@ feature "Products multi lingual", :js => true do
   background do
     I18n.stub(:available_locales).and_return [:en, :fr, :es]
     @product = Factory(:product, :name => "ror mug", :price => 30)
+    sign_in_as! Factory(:admin_user)
   end
 
   scenario "admin should be able to edit product page i18n" do
