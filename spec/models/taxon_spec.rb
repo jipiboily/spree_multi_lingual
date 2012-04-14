@@ -4,8 +4,6 @@ describe Spree::Taxon do
   let(:taxon) { Factory(:taxon, :name => "Ruby on Rails") }
   let(:child) { Factory(:taxon, :name => "Sinatra", :parent => taxon) }
 
-  before { Rails.application.config.i18n.fallbacks = true }
-
   describe "#set_permalink" do
     it "should return default name if fallback is true and no parents" do
       taxon.permalink.should == "ruby-on-rails"

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Products multi lingual", :js => true do
   background do
-    I18n.stub(:available_locales).and_return [:en, :fr, :es]
     @product = Factory(:product, :name => "ror mug", :price => 30)
+    sign_in_as! Factory(:admin_user)
   end
 
   scenario "admin should be able to edit product page i18n" do
@@ -13,7 +13,7 @@ feature "Products multi lingual", :js => true do
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
       # en is the default language so the selector doesnt apply
-      suffix = "#{locale == "en" ? "" : "_#{locale}"}"
+      suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
 
       fill_in "product_name#{suffix}", :with => "ror mug #{locale}"
       fill_in "product_description#{suffix}", :with => "foo bar #{locale}"
@@ -37,7 +37,7 @@ feature "Products multi lingual", :js => true do
 
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
-      suffix = "#{locale == "en" ? "" : "_#{locale}"}"
+      suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
       fill_in "product_permalink#{suffix}", :with => "ror-mug-#{locale}"
       fill_in "product_name#{suffix}", :with => "ror mug #{locale}"
     end
@@ -47,7 +47,5 @@ feature "Products multi lingual", :js => true do
       visit "/#{locale}/products/ror-mug-#{locale}"
       page.should have_content "ror mug #{locale}"
     end
-    # reset locale to en to avoid colision with other tests
-    visit "/en/products/ror-mug-en"
   end
 end
