@@ -1,4 +1,4 @@
-# SpreeMultiLingual
+# SpreeMultiLingual [![Build Status](https://secure.travis-ci.org/sbounmy/spree_multi_lingual.png?branch=1-0-stable)](http://travis-ci.org/sbounmy/spree_multi_lingual)
 
 SpreeMultiLingual is originally a proof of concept for what could become a multi-lingual Spree plugin.
 
