@@ -34,7 +34,7 @@ For the moment, enable locale fallbacks for I18n (makes lookups for any locale f
 
 ```ruby
 # config/application.rb
-config.I18.fallbacks = true
+config.I18n.fallbacks = true
 ```
 
 Run spree_multi_lingual install:
