@@ -22,8 +22,20 @@ task :release => :package do
   Rake::Task['gem:push'].invoke
 end
 
+
 desc "Generates a dummy app for testing"
 task :test_app do
   ENV['LIB_NAME'] = 'spree_multi_lingual'
   Rake::Task['common:test_app'].invoke
+  Rake::Task['test_initializer'].invoke
+end
+
+desc 'Generates initializer for dummy app'
+task :test_initializer => :test_app do
+
+  path = File.join(File.dirname(__FILE__), "spec/dummy/config/initializers/spree_multi_lingual.rb")
+  puts "Creating SpreeMultiLingual initializer file at #{path})}"
+  File.open(path, 'w') do |f|
+    f.write("SpreeMultiLingual.languages = [:en, :fr, :es]\nRails.application.config.i18n.fallbacks = true")
+  end
 end

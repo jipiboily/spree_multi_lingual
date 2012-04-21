@@ -4,8 +4,6 @@ describe Spree::Taxonomy do
   let(:taxonomy) { Factory(:taxonomy, :name => "Man") }
   let(:root) { taxonomy.root }
 
-  before { Rails.application.config.i18n.fallbacks = true }
-
   it "root taxon should set translated name" do
     root.name.should == "Man"
     root.name_fr.should == "Man" #I18n fallback

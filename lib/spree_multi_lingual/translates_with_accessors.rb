@@ -30,6 +30,15 @@ module TranslatesWithAccessors
       options = params.extract_options!
       options.reverse_merge!(:globalize_accessors => true)
       accessors = options.delete(:globalize_accessors)
+
+      param_locales = params.map do |param|
+        SpreeMultiLingual.languages.map do |locale|
+          "#{param}_#{locale}".to_sym
+        end
+      end.flatten
+
+      attr_accessible *param_locales
+
       super
 
       globalize_accessors locales: SpreeMultiLingual.languages, attributes: params.to_a if accessors
