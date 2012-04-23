@@ -100,6 +100,10 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 5. Fallback
 6. Rake task for store that already have users
 
+## Contributors
+
+Special thanks to sbounmy for the amount of contributions he did. Thanks to Radar for merging spree_localize.
+
 ## Testing
 
 Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
