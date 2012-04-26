@@ -11,5 +11,13 @@ module Spree
         I18n.locale = nil
       end
     end
+
+    describe "#locale" do
+      it "should be stored as str" do
+         order = Factory(:order, :locale => :fr)
+         Order.find_by_locale("fr").should == order
+      end
+    end
+
   end
 end
