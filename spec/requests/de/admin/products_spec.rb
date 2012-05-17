@@ -1,9 +1,5 @@
 require 'spec_helper'
 describe "admin products" do
-  before do
-    sign_in_as!(FactoryGirl.create(:admin_user))
-  end
-
   let!(:product) { FactoryGirl.create(:product) }
 
   it "displays price in correct format" do

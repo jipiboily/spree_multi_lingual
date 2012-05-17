@@ -1,4 +1,4 @@
-Spree::Core::ControllerHelpers::InstanceMethods.module_eval do
+Spree::Core::ControllerHelpers.module_eval do
   private
 
   # Internal : Set user I18n.locale

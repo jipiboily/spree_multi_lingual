@@ -8,14 +8,14 @@ module Spree
       InventoryUnit.assign_opening_inventory(self)
       # lock any optional adjustments (coupon promotions, etc.)
       adjustments.optional.each { |adjustment| adjustment.update_attribute('locked', true) }
-      OrderMailer.confirm_email(self).deliver
+      deliver_order_confirmation_email
 
-      self.state_events.create({
+      self.state_changes.create({
         :previous_state => 'cart',
         :next_state     => 'complete',
         :name           => 'order' ,
         :user_id        => (User.respond_to?(:current) && User.current.try(:id)) || self.user_id
-      })
+      }, :without_protection => true)
     end
   end
 end

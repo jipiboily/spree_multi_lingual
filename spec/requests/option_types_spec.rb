@@ -2,7 +2,6 @@ require 'spec_helper'
 
 feature "OptionType multi lingual", :js => true do
   background do
-    sign_in_as! FactoryGirl.create(:admin_user)
     visit spree.admin_option_types_path
   end
 

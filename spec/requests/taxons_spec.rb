@@ -3,7 +3,6 @@ require 'spec_helper'
 feature "Products multi lingual", :js => true do
   background do
     I18n.stub(:available_locales).and_return [:en, :fr, :es]
-    sign_in_as! FactoryGirl.create(:admin_user)
   end
 
   scenario "admin should be able to create taxonomy" do

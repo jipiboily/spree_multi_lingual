@@ -13,7 +13,7 @@ describe Spree::Taxon do
     end
 
     context "when child taxon" do
-      before { taxon.update_attributes!(:permalink_fr => "ruby-on-rails-fr", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es") }
+      before { taxon.update_attributes!(:permalink => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es") }
 
       it "returns translated parents permalink" do
         child.permalink.should == "ruby-on-rails/sinatra"
