@@ -35,6 +35,7 @@ module TranslatesWithAccessors
       params_with_locale = SpreeMultiLingual.languages.map do |locale|
         params.map { |param| "#{param}_#{locale}".to_sym }
       end
+
       attr_accessible *(params_with_locale + params).flatten
 
       globalize_accessors locales: SpreeMultiLingual.languages, attributes: params.to_a if accessors
