@@ -12,3 +12,4 @@ script:
 branches:
   only:
     - 1-0-stable
+    - 1-1-stable
