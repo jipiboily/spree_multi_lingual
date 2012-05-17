@@ -13,7 +13,7 @@ Since then integration tests and features have been added.
 Add gem to your Gemfile:
 
 ```ruby
-gem "spree_multi_lingual", :git => "git@github.com:sbounmy/spree_multi_lingual.git"
+gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
 gem 'routing-filter', :git => "git://github.com/MoritzMoritz/routing-filter.git", :branch => "locale-exclusion"
 ```
 
