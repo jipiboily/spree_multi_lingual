@@ -1,10 +1,10 @@
 require 'spec_helper'
 describe "admin products" do
   before do
-    sign_in_as!(Factory(:admin_user))
+    sign_in_as!(FactoryGirl.create(:admin_user))
   end
 
-  let!(:product) { Factory(:product) }
+  let!(:product) { FactoryGirl.create(:product) }
 
   it "displays price in correct format" do
     visit spree.edit_admin_product_path(product)

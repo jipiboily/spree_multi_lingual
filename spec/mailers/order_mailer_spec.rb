@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   describe OrderMailer do
-    let(:order) { Factory(:order, :locale => :fr) }
+    let(:order) { FactoryGirl.create(:order, :locale => :fr) }
     let(:mail) { ActionMailer::Base.deliveries.last }
 
     it "should use i18n email template" do

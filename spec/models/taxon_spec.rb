@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Spree::Taxon do
-  let(:taxon) { Factory(:taxon, :name => "Ruby on Rails") }
-  let(:child) { Factory(:taxon, :name => "Sinatra", :parent => taxon) }
+  let(:taxon) { FactoryGirl.create(:taxon, :name => "Ruby on Rails") }
+  let(:child) { FactoryGirl.create(:taxon, :name => "Sinatra", :parent => taxon) }
 
   describe "#set_permalink" do
     it "should return default name if fallback is true and no parents" do

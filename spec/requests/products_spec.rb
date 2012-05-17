@@ -2,8 +2,8 @@ require 'spec_helper'
 
 feature "Products multi lingual", :js => true do
   background do
-    @product = Factory(:product, :name => "ror mug", :price => 30)
-    sign_in_as! Factory(:admin_user)
+    @product = FactoryGirl.create(:product, :name => "ror mug", :price => 30)
+    sign_in_as! FactoryGirl.create(:admin_user)
   end
 
   scenario "admin should be able to edit product page i18n" do

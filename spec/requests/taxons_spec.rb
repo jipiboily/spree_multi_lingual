@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Products multi lingual", :js => true do
   background do
     I18n.stub(:available_locales).and_return [:en, :fr, :es]
-    sign_in_as! Factory(:admin_user)
+    sign_in_as! FactoryGirl.create(:admin_user)
   end
 
   scenario "admin should be able to create taxonomy" do
@@ -75,7 +75,7 @@ feature "Products multi lingual", :js => true do
 
     scenario "admin should be able to edit child taxons" do
       @parent = Spree::Taxon.last
-      @child = Factory(:taxon, :name => "child", :parent => @parent, :taxonomy => @taxonomy)
+      @child = FactoryGirl.create(:taxon, :name => "child", :parent => @parent, :taxonomy => @taxonomy)
       visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @child)
 
       # verify if the form has correct values
@@ -99,7 +99,7 @@ feature "Products multi lingual", :js => true do
 
     scenario "admin should be able to edit parent taxon permalink" do
       @parent = Spree::Taxon.last
-      @child = Factory(:taxon, :name => "Sinatra En", :name_fr => "Sinatra Fr", :name_es => "Sinatra Es",
+      @child = FactoryGirl.create(:taxon, :name => "Sinatra En", :name_fr => "Sinatra Fr", :name_es => "Sinatra Es",
       :permalink_fr => "sinatra-fr", :permalink => "sinatra-en", :permalink_es => "sinatra-es", :parent => @parent, :taxonomy => @taxonomy)
       visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @parent)
 
@@ -125,7 +125,7 @@ feature "Products multi lingual", :js => true do
   scenario "by explicitly setting their locale, user should be redirected to the viewed link with the setted locale", :js => false do
     pending "TODO ! cf locale_controller_decorator#set"
 
-    Factory(:taxon, :name => "Ruby on Rails", :permalink_fr => "ror-fr", :permalink_es => "ror-es", :permalink => "ror", :permalink_en => "ror")
+    FactoryGirl.create(:taxon, :name => "Ruby on Rails", :permalink_fr => "ror-fr", :permalink_es => "ror-es", :permalink => "ror", :permalink_en => "ror")
 
     get "/en/t/ror"
     get "/fr/locale/set", {}, {'HTTP_REFERER' => 'http://example.com/en/t/ror', 'HTTP_HOST' => 'example.com'} #manually set 'HTTP_REFERER' AND 'HTTP_HOST'

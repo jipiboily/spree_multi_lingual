@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Spree::Taxonomy do
-  let(:taxonomy) { Factory(:taxonomy, :name => "Man") }
+  let(:taxonomy) { FactoryGirl.create(:taxonomy, :name => "Man") }
   let(:root) { taxonomy.root }
 
   it "root taxon should set translated name" do
