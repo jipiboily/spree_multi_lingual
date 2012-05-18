@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Products multi lingual", :js => true do
   background do
-    @product = Factory(:product, :name => "ror mug", :price => 30)
+    @product = FactoryGirl.create(:product, :name => "ror mug", :price => 30)
   end
 
   scenario "admin should be able to edit product page i18n" do
@@ -12,8 +12,6 @@ feature "Products multi lingual", :js => true do
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
       # en is the default language so the selector doesnt apply
-      save_and_open_page
-      debugger
       suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
 
       fill_in "product_name#{suffix}", :with => "ror mug #{locale}"

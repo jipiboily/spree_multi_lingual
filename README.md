@@ -1,4 +1,4 @@
-# SpreeMultiLingual
+# SpreeMultiLingual [![Build Status](https://secure.travis-ci.org/sbounmy/spree_multi_lingual.png?branch=1-0-stable)](http://travis-ci.org/sbounmy/spree_multi_lingual)
 
 SpreeMultiLingual is originally a proof of concept for what could become a multi-lingual Spree plugin.
 
@@ -14,7 +14,6 @@ Add gem to your Gemfile:
 
 ```ruby
 gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
-gem 'routing-filter', :git => "git://github.com/MoritzMoritz/routing-filter.git", :branch => "locale-exclusion"
 ```
 
 Run Bundler
@@ -34,7 +33,7 @@ For the moment, enable locale fallbacks for I18n (makes lookups for any locale f
 
 ```ruby
 # config/application.rb
-config.I18.fallbacks = true
+config.I18n.fallbacks = true
 ```
 
 Run spree_multi_lingual install:
@@ -99,6 +98,10 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 4. Dropdown or something to change locale
 5. Fallback
 6. Rake task for store that already have users
+
+## Contributors
+
+Special thanks to sbounmy for the amount of contributions he did. Thanks to Radar for merging spree_localize.
 
 ## Testing
 

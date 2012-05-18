@@ -16,22 +16,23 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 1.1.0beta'
+  s.add_dependency 'spree_core', '~> 1.1.0'
   s.add_dependency 'i18n'
   s.add_dependency 'globalize3', '~> 0.2.0.beta8'
   s.add_dependency 'easy_globalize3_accessors'
-  # s.add_dependency 'routing-filter'
+  s.add_dependency 'routing-filter', '~> 0.3.1'
   s.add_dependency 'rack-contrib'
 
   s.add_dependency 'coffee-rails'
 
   s.add_development_dependency 'capybara', '1.0.1'
-  s.add_development_dependency 'factory_girl'
+  s.add_development_dependency 'factory_girl_rails', '~> 1.7.0'
   s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.7'
+  s.add_development_dependency 'rspec-rails',  '~> 2.9.0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'launchy', '2.0.5'
+  s.add_development_dependency 'awesome_print'
   # Seems Spree doesn't require it correctly or there is a problem with extensions maybe? Still, it is needed to work with the dummy app!
-  s.add_dependency 'sass'
+  s.add_development_dependency 'sass-rails'
 end

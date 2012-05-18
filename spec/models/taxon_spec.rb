@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Spree::Taxon do
-  let(:taxon) { Factory(:taxon, :name => "Ruby on Rails") }
-  let(:child) { Factory(:taxon, :name => "Sinatra", :parent => taxon) }
+  let(:taxon) { FactoryGirl.create(:taxon, :name => "Ruby on Rails") }
+  let(:child) { FactoryGirl.create(:taxon, :name => "Sinatra", :parent => taxon) }
 
   describe "#set_permalink" do
     it "should return default name if fallback is true and no parents" do
@@ -13,7 +13,7 @@ describe Spree::Taxon do
     end
 
     context "when child taxon" do
-      before { taxon.update_attributes!(:permalink_en => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es") }
+      before { taxon.update_attributes!(:permalink => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es") }
 
       it "returns translated parents permalink" do
         child.permalink.should == "ruby-on-rails/sinatra"

@@ -11,10 +11,8 @@ Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f }
 
 # Requires factories defined in spree_core
 require 'spree/core/testing_support/factories'
-require 'spree/core/url_helpers'
 
 RSpec.configure do |config|
-  config.include Spree::Core::UrlHelpers
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -32,4 +30,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include Spree::UrlHelpers
+  config.after(:each) do
+    I18n.locale = nil
+  end
 end
