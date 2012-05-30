@@ -1,12 +1,12 @@
-# SpreeMultiLingual [![Build Status](https://secure.travis-ci.org/sbounmy/spree_multi_lingual.png?branch=master)](http://travis-ci.org/sbounmy/spree_multi_lingual)
+# SpreeMultiLingual [![Build Status](https://secure.travis-ci.org/jipiboily/spree_multi_lingual.png?branch=master)](http://travis-ci.org/jipiboily/spree_multi_lingual)
 
 SpreeMultiLingual is originally a proof of concept for what could become a multi-lingual Spree plugin.
 
 Since then integration tests and features have been added.
 
 ## Requirements
- - Spree 1.0.X
- - Rails 3.1.X
+ - Spree 1.1.X
+ - Rails 3.2.X
 
 
 ## Installation
@@ -89,15 +89,12 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 
 1. Make taxons multi languages editable from the taxonomy tree
 2. Dynamically show taxon full permalink depending on dropdown language selected : Taxons#edit
-2. Travis-CI
 3. Add things to translate:
-	- Option types
 	- Option values
 	- Properties
 	- Alt text on images
 4. Dropdown or something to change locale
-5. Fallback
-6. Rake task for store that already have users
+5. Rake task for store that already have users
 
 ## Contributors
 
