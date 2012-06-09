@@ -1,6 +1,7 @@
 module SpreeMultiLingual
   module Generators
     class InstallGenerator < Rails::Generators::Base
+      class_option :yes, :type => :boolean, :default => false
 
       def add_javascripts
         append_file "app/assets/javascripts/store/all.js", "//= require store/spree_multi_lingual\n"
@@ -17,7 +18,7 @@ module SpreeMultiLingual
       end
 
       def run_migrations
-         res = ask "Would you like to run the migrations now? [Y/n]"
+         res = options[:yes] ?  "" : ask("Would you like to run the migrations now? [Y/n]")
          if res == "" || res.downcase == "y"
            run 'bundle exec rake db:migrate'
          else
