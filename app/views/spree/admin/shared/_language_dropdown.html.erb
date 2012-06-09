@@ -11,7 +11,7 @@
   window.spree_multi_lingual.translated_fields_values = [];
   <% klass.translated_attribute_names.each do |f| %>
     <% SpreeMultiLingual.languages.each do |lang| %>
-      window.spree_multi_lingual.translated_fields_values['<%= "#{object_prefix}#{f}_#{lang}" -%>'] = '<%= escape_javascript(object.send("#{f}_#{lang}").gsub(/\r\n?/,"")) if !object.send("#{f}_#{lang}").nil? -%>';
+      window.spree_multi_lingual.translated_fields_values['<%= "#{object_prefix}#{f}_#{lang}" -%>'] = '<%= escape_javascript(object.send("#{f}_#{lang}")) if !object.send("#{f}_#{lang}").nil? -%>';
     <% end %>
   <% end %>
 </script>
