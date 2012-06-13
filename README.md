@@ -67,7 +67,7 @@ If you want to create taxons using the taxonomy tree, please only use the defaul
 
 To edit taxons permalink please do as following:
 ![Taxon](http://i44.tinypic.com/dqir20.png)
-![TaxonEdit](http://i40.tinypic.com/v78lmt.png)
+![TaxonEdit](http://s18.postimage.org/7scp13vux/Screen_shot_2012_03_11_at_4_26_49_PM.png)
 
 ### What is translated?
 
