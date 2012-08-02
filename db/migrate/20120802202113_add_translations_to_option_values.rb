@@ -1,4 +1,4 @@
-class AddTranslationsToOptionTypes < ActiveRecord::Migration
+class AddTranslationsToOptionValues < ActiveRecord::Migration
   def up
     Spree::OptionValue.create_translation_table!(
       { :presentation => :string }, { :migrate_data => true } )
