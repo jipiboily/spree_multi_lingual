@@ -12,15 +12,22 @@ Since then integration tests and features have been added.
 ## Installation
 Add gem to your Gemfile:
 
-```ruby
-gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
-```
+	gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
+
 
 Run Bundler
 
-```ruby
-bundle install
-```
+	bundle install
+
+**Assets**
+
+In app/assets/javascripts/admin/all.js
+	
+	//= require admin/spree_multi_lingual
+	//= require admin/spree_multi_lingual_class
+
+This is required for the language dropdown!
+
 
 Add an initializer file and set SpreeMultiLingual.languages to an array containing the languages you support.
 
@@ -38,9 +45,7 @@ config.i18n.fallbacks = true
 
 Run spree_multi_lingual install:
 
-```ruby
-rails g spree_multi_lingual:install
-```
+	rails g spree_multi_lingual:install
 
 If you want to use browser language detection using rack-contrib Locale :
 
@@ -62,8 +67,8 @@ Products:
 http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
 
 Taxons:
-/!\ Using the taxonomy tree you can only edit another locale taxons name, to do so click on the links next to "Edit Taxonomy" to show the taxonomy for a given locale.
-If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.
+** /!\ Using the taxonomy tree you can only edit another locale taxons name, to do so click on the links next to "Edit Taxonomy" to show the taxonomy for a given locale.
+If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.**
 
 To edit taxons permalink please do as following:
 ![Taxon](http://i44.tinypic.com/dqir20.png)
