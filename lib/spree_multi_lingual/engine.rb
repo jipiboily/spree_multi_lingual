@@ -1,6 +1,8 @@
 module SpreeMultiLingual
   mattr_reader :languages
+  mattr_accessor :use_locale_filter
   @@languages = [:en]
+  @@use_locale_filter = true
 
   def self.languages=(locales=[])
     I18n.available_locales = locales
