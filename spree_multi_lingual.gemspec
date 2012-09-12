@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_multi_lingual'
-  s.version     = '0.1.0.alpha2'
+  s.version     = '1.0.0'
   s.summary     = 'Proof of concept for a multi-lingual Spree store plugin'
   s.description = 'This is a proof of concept for what could become a multi-lingual Spree store plugin. Warning: code quality is from so-so to poor. Just wanted to put out something before Spreeconf so we could discuss and maybe hack around it.'
   s.required_ruby_version = '>= 1.8.7'
@@ -16,9 +16,9 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 1.1.0'
+  s.add_dependency 'spree_core', '1.2.0'
   s.add_dependency 'i18n'
-  s.add_dependency 'globalize3', '~> 0.2.0.beta8'
+  s.add_dependency 'globalize3', '0.2.0'
   s.add_dependency 'easy_globalize3_accessors'
   s.add_dependency 'routing-filter', '~> 0.3.1'
   s.add_dependency 'rack-contrib'
