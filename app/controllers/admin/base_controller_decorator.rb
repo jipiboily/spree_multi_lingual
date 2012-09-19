@@ -10,7 +10,7 @@ Spree::Admin::BaseController.class_eval do
   private
 
   def set_user_language
-    I18n.locale = Spree::Config[:default_locale].to_sym
+    I18n.locale = Rails.application.config.i18n.default_locale.to_sym
   end
 
 end
