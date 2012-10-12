@@ -9,11 +9,11 @@
   window.spree_multi_lingual.translated_fields = <%= raw klass.translated_attribute_names.map { |f| object_prefix + f.to_s } %>;
   window.spree_multi_lingual.backend_locale = "<%= I18n.locale -%>";
   window.spree_multi_lingual.translated_fields_values = [];
+  
   <% klass.translated_attribute_names.each do |f| %>
     <% SpreeMultiLingual.languages.each do |lang| %>
       window.spree_multi_lingual.translated_fields_values['<%= "#{object_prefix}#{f}_#{lang}" -%>'] = '<%= escape_javascript(object.send("#{f}_#{lang}")).html_safe if !object.send("#{f}_#{lang}").nil? -%>';
     <% end %>
-    
     
     <% if object.class.to_s == "Spree::OptionType" %>
 
@@ -22,7 +22,7 @@
       // This will 'grab' all option_values attributes to be translated
       for (i=0; i < <%= number_of_values %>; i++ ) {
         window.spree_multi_lingual.translated_fields.push('option_type_option_values_attributes_' + i + '_presentation');
-      }  
+      };
       
       // to check option_values
       // console.log(window.spree_multi_lingual.translated_fields);
@@ -34,11 +34,26 @@
         
         <% op.translated_attribute_names.each do |f| %>
           <% SpreeMultiLingual.languages.each do |lang| %>
-            window.spree_multi_lingual.translated_fields_values["option_type_option_values_attributes_<%= n %>_presentation_<%= lang %>"] = '<%= op.send("#{f}_#{lang}") %>'
+            window.spree_multi_lingual.translated_fields_values["option_type_option_values_attributes_<%= n %>_presentation_<%= lang %>"] = '<%= op.send("#{f}_#{lang}") %>';
           <% end %>
         <% end %>
         <% n += 1 %>
       <% end %>
+    <% elsif object.class.to_s == "Spree::ProductProperty" %>
+      <% number_of_properties = @product_properties.size %>
+      
+      for (var i=0; i < <%= number_of_properties %>; i++) {
+        window.spree_multi_lingual.translated_fields.push('product_product_properties_attributes_'+ i +'_value');
+      };
+      
+      <% nx = 0 %>
+      <% object.translated_attribute_names.each do |f| %>
+        <% SpreeMultiLingual.languages.each do |lang| %>
+            window.spree_multi_lingual.translated_fields_values["product_product_properties_attributes_<%= nx %>_presentation_<%= lang %>"] = '<%= object.send("#{f}_#{lang}") %>'          
+        <% end %>
+        <% nx += 1 %>
+      <% end %>
+      
     <% end %>
     
   <% end %>
