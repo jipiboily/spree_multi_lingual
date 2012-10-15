@@ -39,19 +39,21 @@
         <% end %>
         <% n += 1 %>
       <% end %>
-    <% elsif object.class.to_s == "Spree::ProductProperty" %>
-      <% number_of_properties = @product_properties.size %>
+    <% elsif object.class.to_s == "Spree::Product" %>
+      <% number_of_properties = object.product_properties.size %>
       
       for (var i=0; i < <%= number_of_properties %>; i++) {
         window.spree_multi_lingual.translated_fields.push('product_product_properties_attributes_'+ i +'_value');
       };
       
       <% nx = 0 %>
-      <% object.translated_attribute_names.each do |f| %>
+      <% object.product_properties.each do |property| %>
+      <% property.translated_attribute_names.each do |f| %>
         <% SpreeMultiLingual.languages.each do |lang| %>
-            window.spree_multi_lingual.translated_fields_values["product_product_properties_attributes_<%= nx %>_presentation_<%= lang %>"] = '<%= object.send("#{f}_#{lang}") %>'          
+            window.spree_multi_lingual.translated_fields_values["product_product_properties_attributes_<%= nx %>_value_<%= lang %>"] = '<%= property.send("#{f}_#{lang}") %>';
         <% end %>
         <% nx += 1 %>
+      <% end %>
       <% end %>
       
     <% end %>
