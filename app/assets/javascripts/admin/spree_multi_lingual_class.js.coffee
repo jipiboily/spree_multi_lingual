@@ -41,7 +41,7 @@ class window.SpreeMultiLingual
   inject_editor: (field, field_name) =>
     
     if field == 'product_description' || field == 'page_body'
-      console.log field
+
       if @current_locale isnt @default_locale
         # first time...
         tinyMCE.execCommand('mceAddControl', false, "#{field_name}")
@@ -62,9 +62,9 @@ class window.SpreeMultiLingual
     # code for tinymce editor
     textarea = $('#' + $('textarea:visible').attr('id') + "_parent")
     tinyMCE.execCommand('mceAddControl', false, "#{textarea}")
-    console.log $("span#" + $('textarea.hidden').attr('id') + "_parent:visible").hide().addClass('hidden')
-    console.log $("span#" + $('textarea:visible').attr('id') + "_parent").show().removeClass('hidden')
-    console.log $('textarea:visible').hide().addClass('hidden')
+    $("span#" + $('textarea.hidden').attr('id') + "_parent:visible").hide().addClass('hidden')
+    $("span#" + $('textarea:visible').attr('id') + "_parent").show().removeClass('hidden')
+    $('textarea:visible').hide().addClass('hidden')
     
 
   localized_field_name: (field) =>
