@@ -23,29 +23,20 @@ class window.SpreeMultiLingual
       
       new_field_name_value = $("#" + field).attr("name").substring(0,$("#" + field).attr("name").length - 1) + "_" + @current_locale + "]"
       
-      new_field = $("#" + field).clone().attr("id", field_name).attr("name", new_field_name_value).removeClass("sml-localized-field-" + @default_locale)
-
+      # adapted to use redactorjs editor
+      if field == 'product_description' || field == 'page_body'
+        
+        new_field = $("#" + field).clone().attr("id", field_name).attr("name", new_field_name_value).removeClass("sml-localized-field-" + @default_locale).addClass("redactor").addClass("redactor-#{@current_locale}").removeClass("redactor-#{@default_locale}")
+      else
+        new_field = $("#" + field).clone().attr("id", field_name).attr("name", new_field_name_value).removeClass("sml-localized-field-" + @default_locale)
+      
+      
       value = eval("window.spree_multi_lingual.translated_fields_values['#{field_name}']")
       new_field.val(value) if value
-      $("#" + field).after(new_field)  
+
+      $("#" + field).parent().after(new_field)
       @add_localized_class(field_name)
       @add_localized_class(field, @default_locale)
-
-
-      @inject_editor(field, field_name)
-
-
-  # Hack to use tinymce editor
-  # The rest is in the show_fields function
-  # Still need to be improved
-  inject_editor: (field, field_name) =>
-    
-    if field == 'product_description' || field == 'page_body'
-
-      if @current_locale isnt @default_locale
-        # first time...
-        tinyMCE.execCommand('mceAddControl', false, "#{field_name}")
-        $("span##{field}_parent").hide()
 
         
   make_sure_field_exists_for_language: =>
@@ -55,17 +46,16 @@ class window.SpreeMultiLingual
         @duplicate_field(field)
 
   show_fields: =>
-    # order is important
+    # adapted to use redactorjs editor
     $(".sml-localized-field").hide()
+    $(".redactor").hide().parent('div.redactor_box').hide()
+    
     $(".sml-localized-field-#{@current_locale}").show()
+    $("textarea.sml-localized-field-#{@current_locale}").hide()  
     
-    # code for tinymce editor
-    textarea = $('#' + $('textarea:visible').attr('id') + "_parent")
-    tinyMCE.execCommand('mceAddControl', false, "#{textarea}")
-    $("span#" + $('textarea.hidden').attr('id') + "_parent:visible").hide().addClass('hidden')
-    $("span#" + $('textarea:visible').attr('id') + "_parent").show().removeClass('hidden')
-    $('textarea:visible').hide().addClass('hidden')
-    
+    $(".redactor-#{@current_locale}").parent('div.redactor_box').show()
+    $(".redactor-#{@current_locale}").redactor({ focus : true });
+        
 
   localized_field_name: (field) =>
     return (field + "_" + @current_locale) if @current_locale isnt @default_locale
