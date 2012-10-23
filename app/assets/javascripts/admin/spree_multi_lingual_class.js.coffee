@@ -9,15 +9,14 @@ class window.SpreeMultiLingual
     @translated_fields = window.spree_multi_lingual.translated_fields
     @default_locale = window.spree_multi_lingual.backend_locale
     @current_locale = @default_locale
-
+    
   change_language: (locale) =>
     @current_locale = locale
     @make_sure_field_exists_for_language()
     @show_fields()
 
   duplicate_field: (field) =>
-    field_name = @localized_field_name(field)
-    
+    field_name = @localized_field_name(field)    
     
     if $("#" + field)[0]
       
@@ -46,6 +45,12 @@ class window.SpreeMultiLingual
         @duplicate_field(field)
 
   show_fields: =>
+    csrf_token = $('meta[name=csrf-token]').attr('content');
+    csrf_param = $('meta[name=csrf-param]').attr('content');
+    
+    console.log csrf_token
+    console.log csrf_param
+    
     # adapted to use redactorjs editor
     $(".sml-localized-field").hide()
     $(".redactor").hide().parent('div.redactor_box').hide()
@@ -54,7 +59,16 @@ class window.SpreeMultiLingual
     $("textarea.sml-localized-field-#{@current_locale}").hide()  
     
     $(".redactor-#{@current_locale}").parent('div.redactor_box').show()
-    $(".redactor-#{@current_locale}").redactor({ focus : true });
+    
+    if (csrf_param != undefined && csrf_token != undefined)
+      params = csrf_param + "=" + encodeURIComponent(csrf_token)
+    
+    $(".redactor-#{@current_locale}").redactor({ 
+        imageUpload   : "/redactor_rails/pictures?#{params}",
+        imageGetJson  : "/redactor_rails/pictures",
+        path          : "/assets/redactor-rails",
+        css           : "style.css"
+      });
         
 
   localized_field_name: (field) =>
