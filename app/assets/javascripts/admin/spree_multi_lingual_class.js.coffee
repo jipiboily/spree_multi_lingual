@@ -47,10 +47,7 @@ class window.SpreeMultiLingual
   show_fields: =>
     csrf_token = $('meta[name=csrf-token]').attr('content');
     csrf_param = $('meta[name=csrf-param]').attr('content');
-    
-    console.log csrf_token
-    console.log csrf_param
-    
+        
     # adapted to use redactorjs editor
     $(".sml-localized-field").hide()
     $(".redactor").hide().parent('div.redactor_box').hide()
@@ -67,7 +64,9 @@ class window.SpreeMultiLingual
         imageUpload   : "/redactor_rails/pictures?#{params}",
         imageGetJson  : "/redactor_rails/pictures",
         path          : "/assets/redactor-rails",
-        css           : "style.css"
+        css           : "style.css",
+        autoresize    : true,
+        minHeight     : 350
       });
         
 
