@@ -12,8 +12,10 @@ Since then integration tests and features have been added.
 ## Installation
 Add gem to your Gemfile:
 
-	gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
+	gem 'spree_multi_lingual', :git => "git@github.com:jipiboily/spree_multi_lingual.git"
+	gem 'globalize3', :git => 'git://github.com/svenfuchs/globalize3.git'
 
+Globalize3 edge version fixed important bug with dynamic finder : https://github.com/svenfuchs/globalize3/commit/b771fb87d3dda4a78cfe294da1fab7df266e72c9
 
 Run Bundler
 
@@ -22,7 +24,7 @@ Run Bundler
 **Assets**
 
 In app/assets/javascripts/admin/all.js
-	
+
 	//= require admin/spree_multi_lingual
 	//= require admin/spree_multi_lingual_class
 
@@ -61,7 +63,7 @@ run MyRailsApp::Application
 ```
 
 ## Use
-On views where there is translated fields, there should be a dropdown to switch currently edited locale. 
+On views where there is translated fields, there should be a dropdown to switch currently edited locale.
 
 Products:
 http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
