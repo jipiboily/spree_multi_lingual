@@ -5,7 +5,7 @@ class AddTranslationToShippingMethod < ActiveRecord::Migration
        t.text :description
     end
     Spree::ShippingMethod.reset_column_information
-    Spree::ShippingMethod.create_translation_table! ( { :name => :string, :description => :text }, { :migrate_data => true } )
+    Spree::ShippingMethod.create_translation_table!( { :name => :string, :description => :text }, { :migrate_data => true } )
   end
   def down
     Spree::ShippingMethod.drop_translation_table!
