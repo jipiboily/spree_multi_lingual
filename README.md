@@ -90,6 +90,8 @@ It uses Globalize3, easy_globalize3_accessors and routing-filter. Thanks to [Tom
 
 SpreeMultiLingual depends on a fork of routing-filter because it supports :exclude option in routes, used for /admin. I hope it this feature can me merged into the original repo.
 
+The flags are from the flags icon set from famfamfam (http://www.famfamfam.com/).
+
 ## TODO
 
 1. Make taxons multi languages editable from the taxonomy tree
