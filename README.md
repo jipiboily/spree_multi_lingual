@@ -56,7 +56,7 @@ run MyRailsApp::Application
 ```
 
 ## Use
-On views where there is translated fields, there should be a dropdown to switch currently edited locale. 
+On views where there is translated fields, there should be a dropdown to switch currently edited locale.
 
 Products:
 http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
@@ -105,7 +105,7 @@ Special thanks to sbounmy for the amount of contributions he did. Thanks to Rada
 Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
 
     $ bundle
-    $ bundle exec rake test app
+    $ bundle exec rake test_app
     $ bundle exec rspec spec
 
 Copyright (c) 2012 Jean-Philippe Boily, released under the New BSD License
