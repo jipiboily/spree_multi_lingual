@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 feature "Products multi lingual", :js => true do
+  stub_authorization!
+
   background do
     I18n.stub(:available_locales).and_return [:en, :fr, :es]
   end
@@ -17,7 +19,7 @@ feature "Products multi lingual", :js => true do
     fill_in "Name", :with => "Bonjour"
     click_button "Update"
 
-    click_link "Edit"
+    click_icon :edit
     click_link "fr"
     page.should have_content("Bonjour")
 
@@ -25,7 +27,7 @@ feature "Products multi lingual", :js => true do
     fill_in "Name", :with => "Hola"
     click_button "Update"
 
-    click_link "Edit"
+    click_icon :edit
     click_link "es"
     page.should have_content("Hola")
   end

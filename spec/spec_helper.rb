@@ -9,8 +9,9 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[File.join(File.dirname(__FILE__), "support/**/*.rb")].each {|f| require f }
 
-# Requires factories defined in spree_core
 require 'spree/core/testing_support/factories'
+require 'spree/core/testing_support/authorization_helpers'
+require 'spree/core/testing_support/capybara_ext'
 
 RSpec.configure do |config|
   # == Mock Framework

@@ -1,23 +1,32 @@
 require 'spec_helper'
 
 feature "OptionType multi lingual", :js => true do
+  stub_authorization!
+
   background do
     visit spree.admin_option_types_path
   end
 
-  scenario "create successfully" do
+  scenario "update successfully" do
     click_link "new_option_type_link"
     page.should have_button("Create")
+
+    fill_in "option_type_presentation", :with => "Size"
+    fill_in "option_type_name", :with => "size"
+
+    click_button "Create"
 
     select "fr", :from => "spree_multi_lingual_dropdown"
 
     fill_in "option_type_name", :with => "size"
     fill_in "option_type_presentation_fr", :with => "Taille"
 
-    select "en", :from => "spree_multi_lingual_dropdown"
-    fill_in "option_type_presentation", :with => "Size"
+    click_button "Update"
+    page.should have_content("successfully updated!")
+    click_icon :edit
 
-    click_button "Create"
-    page.should have_content("successfully created!")
+    page.should have_content("Size")
+    select "fr", :from => "spree_multi_lingual_dropdown"
+    page.should have_content("Taille")
   end
 end
