@@ -1,12 +1,16 @@
 Spree::Core::Search::Base.class_eval do
   def get_products_conditions_for(base_scope, query)
-    conditions = []
-    query.split.each do |keyword|
-      conditions << [:name, :description].map do |field|
-        "spree_product_translations.#{field} LIKE '%#{keyword}%'"
+    if query.blank?
+      base_scope
+    else
+      conditions = []
+      query.split.each do |keyword|
+        conditions << [:name, :description].map do |field|
+          "spree_product_translations.#{field} LIKE '%#{keyword}%'"
+        end
       end
+      base_scope.where(conditions.join(' OR '))
     end
-    base_scope.where(conditions.join(' OR '))
   end
 
   protected
