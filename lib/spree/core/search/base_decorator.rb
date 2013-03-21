@@ -4,12 +4,14 @@ Spree::Core::Search::Base.class_eval do
       base_scope
     else
       conditions = []
+      keywords = []
       query.split.each do |keyword|
-        conditions << [:name, :description].map do |field|
-          "spree_product_translations.#{field} LIKE '%#{keyword}%'"
+        [:name, :description].map do |field|
+          conditions << "spree_product_translations.#{field} LIKE ?"
+          keywords << "%#{keyword}%"
         end
       end
-      base_scope.where(conditions.join(' OR '))
+      base_scope.where(conditions.join(' OR '), *keywords)
     end
   end
 
