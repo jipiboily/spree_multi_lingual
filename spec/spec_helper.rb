@@ -31,6 +31,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include Spree::UrlHelpers
+  config.include Capybara::DSL
+
   config.after(:each) do
     I18n.locale = nil
   end

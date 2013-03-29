@@ -26,10 +26,11 @@ feature "Products multi lingual", :js => true do
 
     # Checking if each language have been corectly updated
     %w(fr en es).each do |locale|
+      suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
       select locale, :from => "spree_multi_lingual_dropdown"
-      page.should have_content("ror mug #{locale}")
-      page.should have_content("meta #{locale} desc")
-      page.should have_content("#{locale} keywords")
+      first("input#product_name#{suffix}")[:value].should == "ror mug #{locale}"
+      first("input#product_meta_description#{suffix}")[:value].should ==  "meta #{locale} desc"
+      first("input#product_meta_keywords#{suffix}")[:value].should == "#{locale} keywords"
     end
   end
 

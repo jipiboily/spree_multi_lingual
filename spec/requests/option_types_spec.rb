@@ -18,15 +18,14 @@ feature "OptionType multi lingual", :js => true do
 
     select "fr", :from => "spree_multi_lingual_dropdown"
 
-    fill_in "option_type_name", :with => "size"
     fill_in "option_type_presentation_fr", :with => "Taille"
 
     click_button "Update"
     page.should have_content("successfully updated!")
     click_icon :edit
 
-    page.should have_content("Size")
+    first('#option_type_presentation')[:value].should == "Size"
     select "fr", :from => "spree_multi_lingual_dropdown"
-    page.should have_content("Taille")
+    first('#option_type_presentation_fr')[:value].should == "Taille"
   end
 end

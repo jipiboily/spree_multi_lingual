@@ -17,19 +17,21 @@ feature "Products multi lingual", :js => true do
 
     click_link "fr"
     fill_in "Name", :with => "Bonjour"
+
     click_button "Update"
 
     click_icon :edit
     click_link "fr"
-    page.should have_content("Bonjour")
+    page.should have_content("BONJOUR")
 
-    click_link "es"
+    within("h1") { click_link "es" }
+
     fill_in "Name", :with => "Hola"
     click_button "Update"
 
     click_icon :edit
-    click_link "es"
-    page.should have_content("Hola")
+    within("h1") { click_link "es" }
+    page.should have_content("HOLA")
   end
 
   context "edit taxons" do
@@ -49,7 +51,7 @@ feature "Products multi lingual", :js => true do
 
         suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
 
-        fill_in "taxon_name#{suffix}", :with => "TAXON - #{locale}"
+        fill_in "taxon_name#{suffix}", :with => "TAXON - #{locale.upcase}"
         fill_in "taxon_description#{suffix}", :with => "TAXON Description - #{locale * 20}"
         fill_in "taxon_permalink#{suffix}", :with => "taxon-#{locale}"
       end
@@ -63,14 +65,17 @@ feature "Products multi lingual", :js => true do
       # verify if the form has correct values
       %w(fr en es).each do |locale|
         select locale, :from => "spree_multi_lingual_dropdown"
-        page.should have_content("TAXON - #{locale}")
-        page.should have_content("TAXON Description - #{locale * 20}")
+
+        suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
+
+        first("input#taxon_name#{suffix}")[:value].should == "TAXON - #{locale.upcase}"
+        first("textarea#taxon_description#{suffix}")[:value].should == "TAXON Description - #{locale * 20}"
       end
 
       # set local and ensure each page is visitable
       %w(fr en es).each do |locale|
         visit "/#{locale}/t/taxon-#{locale}"
-        page.should have_content "TAXON - #{locale}"
+        page.should have_content "TAXON - #{locale.upcase}"
       end
     end
 
