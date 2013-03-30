@@ -5,7 +5,7 @@ SpreeMultiLingual is originally a proof of concept for what could become a multi
 Since then integration tests and features have been added.
 
 ## Requirements
- - Spree 1.2.X
+ - Spree 1.3.X
  - Rails 3.2.X
 
 
@@ -73,8 +73,8 @@ Taxons:
 If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.**
 
 To edit taxons permalink please do as following:
-![Taxon](http://i44.tinypic.com/dqir20.png)
-![TaxonEdit](http://s18.postimage.org/7scp13vux/Screen_shot_2012_03_11_at_4_26_49_PM.png)
+![Taxon](https://dl.dropbox.com/u/51922297/Screen%20Shot%202013-03-30%20at%201.03.00%20AM.png)
+![TaxonEdit](https://dl.dropbox.com/u/51922297/Screen%20Shot%202013-03-30%20at%201.06.51%20AM.png)
 
 ### What is translated?
 
@@ -95,7 +95,7 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 ## TODO
 
 1. Make taxons multi languages editable from the taxonomy tree
-2. Dynamically show taxon full permalink depending on dropdown language selected : Taxons#edit
+2. Dynamically show taxon prefix permalink depending on dropdown language selected : Taxons#edit
 3. Add things to translate:
 	- Option values
 	- Properties
