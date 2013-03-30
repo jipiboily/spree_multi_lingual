@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'launchy', '2.0.5'
   s.add_development_dependency 'awesome_print'
+  s.add_development_dependency 'deface', '~> 1.0.0.rc2'
   # Seems Spree doesn't require it correctly or there is a problem with extensions maybe? Still, it is needed to work with the dummy app!
   s.add_development_dependency 'sass-rails'
 end
