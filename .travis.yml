@@ -11,5 +11,5 @@ script:
 
 branches:
   only:
-    - 1-0-stable
-    - 1-1-stable
+    - master
+    - 1-3-stable

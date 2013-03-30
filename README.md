@@ -5,22 +5,31 @@ SpreeMultiLingual is originally a proof of concept for what could become a multi
 Since then integration tests and features have been added.
 
 ## Requirements
- - Spree 1.1.X
+ - Spree 1.3.X
  - Rails 3.2.X
 
 
 ## Installation
 Add gem to your Gemfile:
 
-```ruby
-gem "spree_multi_lingual", :git => "git@github.com:jipiboily/spree_multi_lingual.git"
-```
+	gem 'spree_multi_lingual', :git => "git@github.com:jipiboily/spree_multi_lingual.git"
+	gem 'globalize3', :git => 'git://github.com/svenfuchs/globalize3.git'
+
+Globalize3 edge version fixed important bug with dynamic finder : https://github.com/svenfuchs/globalize3/commit/b771fb87d3dda4a78cfe294da1fab7df266e72c9
 
 Run Bundler
 
-```ruby
-bundle install
-```
+	bundle install
+
+**Assets**
+
+In app/assets/javascripts/admin/all.js
+
+	//= require admin/spree_multi_lingual
+	//= require admin/spree_multi_lingual_class
+
+This is required for the language dropdown!
+
 
 Add an initializer file and set SpreeMultiLingual.languages to an array containing the languages you support.
 
@@ -33,14 +42,12 @@ For the moment, enable locale fallbacks for I18n (makes lookups for any locale f
 
 ```ruby
 # config/application.rb
-config.I18n.fallbacks = true
+config.i18n.fallbacks = true
 ```
 
 Run spree_multi_lingual install:
 
-```ruby
-rails g spree_multi_lingual:install
-```
+	rails g spree_multi_lingual:install
 
 If you want to use browser language detection using rack-contrib Locale :
 
@@ -56,18 +63,18 @@ run MyRailsApp::Application
 ```
 
 ## Use
-On views where there is translated fields, there should be a dropdown to switch currently edited locale. 
+On views where there is translated fields, there should be a dropdown to switch currently edited locale.
 
 Products:
 http://dl.dropbox.com/u/6210261/spree_multi_lingual.swf
 
 Taxons:
-/!\ Using the taxonomy tree you can only edit another locale taxons name, to do so click on the links next to "Edit Taxonomy" to show the taxonomy for a given locale.
-If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.
+** /!\ Using the taxonomy tree you can only edit another locale taxons name, to do so click on the links next to "Edit Taxonomy" to show the taxonomy for a given locale.
+If you want to create taxons using the taxonomy tree, please only use the default locale for the moment.**
 
 To edit taxons permalink please do as following:
-![Taxon](http://i44.tinypic.com/dqir20.png)
-![TaxonEdit](http://s18.postimage.org/7scp13vux/Screen_shot_2012_03_11_at_4_26_49_PM.png)
+![Taxon](https://dl.dropbox.com/u/51922297/Screen%20Shot%202013-03-30%20at%201.03.00%20AM.png)
+![TaxonEdit](https://dl.dropbox.com/u/51922297/Screen%20Shot%202013-03-30%20at%201.06.51%20AM.png)
 
 ### What is translated?
 
@@ -88,7 +95,7 @@ SpreeMultiLingual depends on a fork of routing-filter because it supports :exclu
 ## TODO
 
 1. Make taxons multi languages editable from the taxonomy tree
-2. Dynamically show taxon full permalink depending on dropdown language selected : Taxons#edit
+2. Dynamically show taxon prefix permalink depending on dropdown language selected : Taxons#edit
 3. Add things to translate:
 	- Option values
 	- Properties

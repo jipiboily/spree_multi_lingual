@@ -12,11 +12,27 @@ describe Spree::Taxon do
       taxon.permalink_en.should == "ruby-on-rails"
     end
 
-    context "when child taxon" do
-      before { taxon.update_attributes!(:permalink => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es") }
+    it 'should update multi lingual permalink' do
+      taxon.update_attributes!(:permalink => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es")
+      taxon.permalink_fr.should == "ruby-on-rails-fr"
+      taxon.permalink_es.should == "ruby-on-rails-es"
+      taxon.permalink_en.should == "ruby-on-rails"
+    end
+
+    it 'child should have correct permalink' do
+      child.permalink_fr.should == 'ruby-on-rails/sinatra'
+      child.permalink_es.should == 'ruby-on-rails/sinatra'
+      child.permalink_en.should == 'ruby-on-rails/sinatra'
+    end
+
+    context "when update" do
+      before do
+        taxon.update_attributes!(:permalink => "ruby-on-rails", :permalink_fr => "ruby-on-rails-fr", :permalink_es => "ruby-on-rails-es")
+        child
+      end
 
       it "returns translated parents permalink" do
-        child.permalink.should == "ruby-on-rails/sinatra"
+        child.reload.permalink.should == "ruby-on-rails/sinatra"
         child.permalink_en.should == "ruby-on-rails/sinatra"
         child.permalink_fr.should == "ruby-on-rails-fr/sinatra"
         child.permalink_es.should == "ruby-on-rails-es/sinatra"
@@ -51,4 +67,20 @@ describe Spree::Taxon do
       end
     end
   end
+
+  describe '#permalink_prefix' do
+    let(:child2) { FactoryGirl.create(:taxon, :name => "Padrino", :parent => child) }
+
+    it 'returns prefix (parents permalink)' do
+      child.permalink_prefix.should == 'ruby-on-rails'
+      child2.permalink_prefix.should == 'ruby-on-rails/sinatra'
+    end
+
+    it 'returns empty string root or new taxon' do
+      taxon.permalink_prefix.should == ''
+      Spree::Taxon.new.permalink_prefix.should == ''
+    end
+
+  end
+
 end

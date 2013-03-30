@@ -1,6 +1,9 @@
 module Spree
   Taxon.class_eval do
     translates :name, :description, :permalink
+    after_save :set_permalink_and_save
+
+    before_update :set_permalink
 
     # Public : Permalink setter with multi language support
     #
@@ -13,27 +16,58 @@ module Spree
       locale_suffix = locale.empty? ? "" : "_#{locale}"
       define_method("permalink#{locale_suffix}=") do |permalink_part|
         opts = locale.empty? ? {} : { :locale => locale.to_sym }
-        unless new_record?
-          _permalink = (read_attribute(:permalink, opts) || []).split("/")[0...-1]
-          permalink_part = (_permalink << permalink_part).join("/")
-        end
-        write_attribute(:permalink, permalink_part, opts)
+        write_attribute(:permalink, (ancestors_permalink(opts) << permalink_part).join('/'), opts)
       end
     end
 
-    # Creates permalink based on Stringex's .to_url method
-    def set_permalink
-      if parent_id.nil?
-        self.permalink = name.to_url if self.permalink.blank?
-      else
-        parent_taxon = Taxon.find(parent_id)
-        parent_taxon.translations_for(:permalink).each do |attribute|
-          parent_permalink, locale = attribute[:permalink], attribute[:locale]
-          permalink_locale = read_attribute(:permalink, :locale => locale)
-          write_attribute(:permalink, [parent_permalink, (permalink_locale.blank? ? name.to_url : permalink_locale.split('/').last)].join('/'), :locale => locale)
+    def ancestors_permalink(opts = {})
+      ancestors.map { |a| a.permalink_name(opts) }
+    end
+
+    def permalink_prefix
+      ancestors_permalink.join('/')
+    end
+
+    # Returns last part of permalink
+    #
+    # Example :
+    # taxon.permalink
+    # => 'ruby-on-rails-fr/sinatra-fr'
+    # taxon.permalink_name
+    # => 'sinatra-fr'
+    def permalink_name(opts = {})
+      read_attribute(:permalink, opts).split('/').last
+    end
+
+    def default_permalink_name
+      permalink.blank? ? name.to_url : permalink_name
+    end
+
+    def localed_permalink
+      [].tap do |res|
+        SpreeMultiLingual.languages.each do |lang|
+          res << {:permalink => permalink_name(:locale => lang), :locale => lang}
         end
-        write_attribute :permalink, [parent_taxon.permalink, (self.permalink.blank? ? name.to_url : self.permalink.split('/').last)].join('/')
       end
     end
+
+    def set_permalink
+      self.permalink = default_permalink_name
+      localed_permalink.each do |t|
+        self.send("permalink_#{t[:locale]}=", t[:permalink])
+      end
+      children.reload.each { |c| c.save }
+      true
+    end
+
+    # awesome_set hack to run this callback only on create, could not access ancestors with after_create
+    # https://github.com/collectiveidea/awesome_nested_set/issues/29
+    def set_permalink_and_save
+      return true if @permalinK_done
+      set_permalink
+      @permalinK_done = true
+      save!
+    end
+
   end
 end

@@ -1,13 +1,16 @@
 require 'spec_helper'
 
 feature "Products multi lingual", :js => true do
+  stub_authorization!
+
   background do
     @product = FactoryGirl.create(:product, :name => "ror mug", :price => 30)
   end
 
   scenario "admin should be able to edit product page i18n" do
     visit spree.admin_products_path
-    click_link "Edit"
+    click_icon :edit
+
     # filling some content in name, meta description, keywords
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
@@ -23,16 +26,17 @@ feature "Products multi lingual", :js => true do
 
     # Checking if each language have been corectly updated
     %w(fr en es).each do |locale|
+      suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
       select locale, :from => "spree_multi_lingual_dropdown"
-      page.should have_content("ror mug #{locale}")
-      page.should have_content("meta #{locale} desc")
-      page.should have_content("#{locale} keywords")
+      first("input#product_name#{suffix}")[:value].should == "ror mug #{locale}"
+      first("input#product_meta_description#{suffix}")[:value].should ==  "meta #{locale} desc"
+      first("input#product_meta_keywords#{suffix}")[:value].should == "#{locale} keywords"
     end
   end
 
   scenario "product permalink should be editable" do
     visit spree.admin_products_path
-    click_link "Edit"
+    click_icon :edit
 
     %w(fr en es).each do |locale|
       select locale, :from => "spree_multi_lingual_dropdown"
