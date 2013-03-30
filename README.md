@@ -38,7 +38,7 @@ Add an initializer file and set SpreeMultiLingual.languages to an array containi
 SpreeMultiLingual.languages = ["fr", "en", "es"] # Add your own locales here
 ```
 
-For the moment, enable locale fallbacks for I18n (makes lookups for any locale fall back to the I18n.default_locale when a translation can not be found)
+For the moment, enable locale fallbacks for i18n (makes lookups for any locale fall back to the i18n.default_locale when a translation can not be found)
 
 ```ruby
 # config/application.rb
@@ -84,7 +84,7 @@ For now :
 - taxons : name, permalink and description.
 
 # WARNING
-there is no fallback of default language for now unless you speficy I18n.fallbacks as previously stated.
+there is no fallback of default language for now unless you speficy i18n.fallbacks as previously stated.
 
 ## Notes
 
