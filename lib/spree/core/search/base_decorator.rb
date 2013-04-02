@@ -7,7 +7,7 @@ Spree::Core::Search::Base.class_eval do
       keywords = []
       query.split.each do |keyword|
         [:name, :description].map do |field|
-          conditions << "spree_product_translations.#{field} LIKE ?"
+          conditions << "`#{Spree::Product.translations_table_name}`.#{field} LIKE ?"
           keywords << "%#{keyword}%"
         end
       end
