@@ -15,11 +15,11 @@ Spree::Product.class_eval do
       meta_keywords_locale = read_attribute(:meta_keywords, :locale => locale)
       permalink_locale = (I18n.t :copy_of_permalink, :locale => locale) + read_attribute(:permalink, :locale => locale)
 
-      eval("p.name"+locale_suffix+" = name_locale")
-      eval("p.description"+locale_suffix+" = description_locale")
-      eval("p.meta_description"+locale_suffix+" = meta_description_locale")
-      eval("p.meta_keywords"+locale_suffix+" = meta_keywords_locale")
-      eval("p.permalink"+locale_suffix+" = permalink_locale")
+      p.send("name"+locale_suffix+"=", name_locale)
+      p.send("description"+locale_suffix+"=", description_locale)
+      p.send("meta_description"+locale_suffix+"=", meta_description_locale)
+      p.send("meta_keywords"+locale_suffix+"=", meta_keywords_locale)
+      p.send("permalink"+locale_suffix+"=", permalink_locale)
     end
 
     p.deleted_at = nil
@@ -44,5 +44,24 @@ Spree::Product.class_eval do
     p.save!
     p
   end
+
+  def self.like_any(fields, values)
+    has_translated_fields = false
+    where_str = fields.map do |field| 
+      if self.translated?(field)
+        has_translated_fields = true
+        next Array.new(values.size, "#{self.translation_class.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')  
+      end
+      next Array.new(values.size, "#{self.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')  
+    end
+    where_str = where_str.join(' OR ')
+    self_scope = self
+    #only use translations scope if we are searching translated fields.
+    if has_translated_fields
+      self_scope = self_scope.with_translations(I18n.locale)
+    end
+    self_scope.where([where_str, values.map { |value| "%#{value}%" } * fields.size].flatten)
+  end
+
 end
 
