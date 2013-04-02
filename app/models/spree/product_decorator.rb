@@ -46,5 +46,24 @@ Spree::Product.class_eval do
     p.save!
     p
   end
+
+  def self.like_any(fields, values)
+    has_translated_fields = false
+    where_str = fields.map do |field|
+      if self.translated?(field)
+        has_translated_fields = true
+        next Array.new(values.size, "#{self.translation_class.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')
+      end
+      next Array.new(values.size, "#{self.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')
+    end
+    where_str = where_str.join(' OR ')
+    self_scope = self
+    #only use translations scope if we are searching translated fields.
+    if has_translated_fields
+      self_scope = self_scope.joins(:translations).where("#{self.translation_class.quoted_table_name}.locale = ?", I18n.locale)
+    end
+
+    self_scope.where([where_str, values.map { |value| "%#{value}%" } * fields.size].flatten)
+  end
 end
 
