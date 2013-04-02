@@ -31,6 +31,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
   config.include Spree::UrlHelpers
+  config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
 
   config.after(:each) do
