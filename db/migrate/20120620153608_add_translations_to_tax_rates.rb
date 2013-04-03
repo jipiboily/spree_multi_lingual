@@ -5,6 +5,6 @@ class AddTranslationsToTaxRates < ActiveRecord::Migration
   end
 
   def down
-    Spree::TaxRate.drop_translation_table!(:migrate_date => true)
+    Spree::TaxRate.drop_translation_table!(:migrate_data => true)
   end
 end

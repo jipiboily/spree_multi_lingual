@@ -4,7 +4,7 @@ Spree::Admin::BaseController.class_eval do
 
   def locale_suffix(locale)
     locale ||= I18n.locale
-    I18n.locale == locale.to_sym ? "".to_sym : "_"+ locale
+    I18n.locale == locale ? "" : "_"+ locale
   end
 
   private
