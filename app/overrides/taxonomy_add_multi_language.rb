@@ -6,6 +6,6 @@ Deface::Override.new(
 
 Deface::Override.new(
         :virtual_path  => "spree/admin/taxons/edit",
-        :insert_before => "code[erb-loud]:contains('form_for [:admin, @taxonomy, @taxon], :method => :put, :html => { :multipart => true } do |f|')",
+        :insert_before => '[data-hook="buttons"]',
         :text => '<%= render "spree/admin/taxons/multi_scripts", :object => @taxon -%>',
         :name    => "taxon_add_language_dropdown")

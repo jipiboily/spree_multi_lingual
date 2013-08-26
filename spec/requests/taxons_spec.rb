@@ -44,7 +44,7 @@ feature "Products multi lingual", :js => true do
 
       @taxonomy = Spree::Taxonomy.last
 
-      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root)
+      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root.id)
 
       %w(fr en es).each do |locale|
         select locale, :from => "spree_multi_lingual_dropdown"
@@ -60,7 +60,7 @@ feature "Products multi lingual", :js => true do
     end
 
     scenario "admin should be able to edit taxons" do
-      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root)
+      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root.id)
 
       # verify if the form has correct values
       %w(fr en es).each do |locale|
@@ -82,7 +82,7 @@ feature "Products multi lingual", :js => true do
     scenario "admin should be able to edit child taxons" do
       @parent = Spree::Taxon.last
       @child = FactoryGirl.create(:taxon, :name => "child", :parent => @parent, :taxonomy => @taxonomy)
-      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @child)
+      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @child.id)
 
       # verify if the form has correct values
       %w(fr en es).each do |locale|
@@ -107,7 +107,7 @@ feature "Products multi lingual", :js => true do
       @parent = Spree::Taxon.last
       @child = FactoryGirl.create(:taxon, :name => "Sinatra En", :name_fr => "Sinatra Fr", :name_es => "Sinatra Es",
       :permalink_fr => "sinatra-fr", :permalink => "sinatra-en", :permalink_es => "sinatra-es", :parent => @parent, :taxonomy => @taxonomy)
-      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @parent)
+      visit spree.edit_admin_taxonomy_taxon_path(@taxonomy, @parent.id)
 
       %w(fr en es).each do |locale|
         select locale, :from => "spree_multi_lingual_dropdown"

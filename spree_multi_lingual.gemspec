@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'deface', '~> 1.0.0.rc2'
   s.add_development_dependency 'email_spec', '~> 1.2.1'
+  # s.add_development_dependency 'debugger'
   # Seems Spree doesn't require it correctly or there is a problem with extensions maybe? Still, it is needed to work with the dummy app!
   s.add_development_dependency 'sass-rails'
 end
