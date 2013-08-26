@@ -22,7 +22,7 @@ feature "Products multi lingual", :js => true do
 
     click_icon :edit
     click_link "fr"
-    page.should have_content("BONJOUR")
+    find("input#taxonomy_name_fr")[:value].should == "Bonjour"
 
     within("h1") { click_link "es" }
 
@@ -31,7 +31,7 @@ feature "Products multi lingual", :js => true do
 
     click_icon :edit
     within("h1") { click_link "es" }
-    page.should have_content("HOLA")
+    find("input#taxonomy_name_es")[:value].should == "Hola"
   end
 
   context "edit taxons" do
@@ -68,8 +68,8 @@ feature "Products multi lingual", :js => true do
 
         suffix = "#{locale.to_sym == I18n.locale ? "" : "_#{locale}"}"
 
-        first("input#taxon_name#{suffix}")[:value].should == "TAXON - #{locale.upcase}"
-        first("textarea#taxon_description#{suffix}")[:value].should == "TAXON Description - #{locale * 20}"
+        find("input#taxon_name#{suffix}")[:value].should == "TAXON - #{locale.upcase}"
+        find("textarea#taxon_description#{suffix}")[:value].should == "TAXON Description - #{locale * 20}"
       end
 
       # set local and ensure each page is visitable
