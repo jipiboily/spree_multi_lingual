@@ -16,10 +16,8 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.0'
-  s.add_dependency 'spree_backend', '~> 2.0'
-  s.add_dependency 'spree_frontend', '~> 2.0'
-  s.add_dependency 'spree_api', '~> 2.0'
+  s.add_dependency 'spree_core', '~> 1.3'
+  s.add_dependency 'spree_promo', '~> 1.3'
   s.add_dependency 'i18n'
   s.add_dependency 'globalize3', '0.2.0'
   s.add_dependency 'easy_globalize3_accessors'
@@ -28,9 +26,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'coffee-rails'
 
-  s.add_development_dependency 'capybara', '2.1.0'
-  s.add_development_dependency 'spree_api', '~> 2.0'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.2'
+  s.add_development_dependency 'capybara', '2.0.2'
+  s.add_development_dependency 'factory_girl_rails', '~> 1.7.0'
   s.add_development_dependency 'ffaker'
   s.add_development_dependency 'rspec-rails',  '~> 2.9.0'
   s.add_development_dependency 'sqlite3'
@@ -39,8 +36,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'awesome_print'
   s.add_development_dependency 'deface', '~> 1.0.0.rc2'
   s.add_development_dependency 'email_spec', '~> 1.2.1'
-  s.add_development_dependency 'selenium-webdriver', '2.35.0'
-  # Seems Spree doesn't require it correctly or there is a problem with extensions maybe? Still, it is needed to work with the dummy app!
   # s.add_development_dependency 'debugger'
+  # Seems Spree doesn't require it correctly or there is a problem with extensions maybe? Still, it is needed to work with the dummy app!
   s.add_development_dependency 'sass-rails'
 end

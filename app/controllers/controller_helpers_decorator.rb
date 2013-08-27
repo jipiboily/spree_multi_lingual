@@ -1,4 +1,4 @@
-Spree::StoreController.class_eval do
+Spree::Core::ControllerHelpers::Common.module_eval do
   private
 
   # Internal : Set user I18n.locale

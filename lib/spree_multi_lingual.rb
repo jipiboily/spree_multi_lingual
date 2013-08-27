@@ -1,7 +1,5 @@
 require 'spree_core'
-require 'spree_backend'
-require 'spree_frontend'
-require 'spree_api'
+require 'spree_promo'
 require 'spree_multi_lingual/engine'
 require "globalize3"
 require "easy_globalize3_accessors"

@@ -6,7 +6,7 @@ module Spree
     include EmailSpec::Helpers
     include EmailSpec::Matchers
 
-    let(:order) { create(:order, :locale => :fr) }
+    let(:order) { FactoryGirl.create(:order, :locale => :fr) }
     let(:mail) { ActionMailer::Base.deliveries.last }
 
     it "should use i18n email template" do

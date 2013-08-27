@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe Spree::Core::Search::Base do
-  let(:stock_location) { create(:stock_location) }
 
   before do
-    include ::Spree::Core::ProductFilters
-    @product1 = create(:product, :name => "RoR Shirt", :name_fr => "RoR Chemise", :name_es => "RoR Camisa", :price => 9.00, :available_on => 2.days.ago)
-    @product2 = create(:product, :name => "Trouser", :name_fr => "Pantalon", :name_es => "Pantalones", :price => 9.00 )
-    stock_location.stock_items.update_all(count_on_hand: 1)
+    include ::Spree::ProductFilters
+    @product1 = create(:product, :name => "RoR Shirt", :name_fr => "RoR Chemise", :name_es => "RoR Camisa", :price => 9.00, :on_hand => 1, :available_on => 2.days.ago)
+    @product2 = create(:product, :name => "Trouser", :name_fr => "Pantalon", :name_es => "Pantalones", :price => 9.00, :on_hand => 1)
   end
 
   it "returns all products by default" do
@@ -49,7 +47,7 @@ describe Spree::Core::Search::Base do
   end
 
   it 'should return product without translation' do
-    create(:product, :name => "RoR Shirt", :price => 9.00)
+    create(:product, :name => "RoR Shirt", :price => 9.00, :on_hand => 1)
     params = { :per_page => "" }
     I18n.locale = :fr
     searcher = Spree::Core::Search::Base.new(params)

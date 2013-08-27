@@ -1,6 +1,5 @@
 require 'spec_helper'
-
-feature "admin products" do
+describe "admin products" do
   stub_authorization!
 
   let!(:product) { FactoryGirl.create(:product) }
