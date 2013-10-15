@@ -52,9 +52,9 @@ Spree::Product.class_eval do
     where_str = fields.map do |field|
       if self.translated?(field)
         has_translated_fields = true
-        next Array.new(values.size, "#{self.translation_class.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')
+        next Array.new(values.size, "#{self.translation_class.quoted_table_name}.#{field} LIKE ?").join(' OR ')
       end
-      next Array.new(values.size, "#{self.quoted_table_name}.#{field} #{LIKE} ?").join(' OR ')
+      next Array.new(values.size, "#{self.quoted_table_name}.#{field} LIKE ?").join(' OR ')
     end
     where_str = where_str.join(' OR ')
     self_scope = self
