@@ -5,7 +5,9 @@ Deface::Override.new(
         :partial => "spree/admin/taxonomies/multi_language_links")
 
 Deface::Override.new(
-        :virtual_path  => "spree/admin/taxons/edit",
-        :insert_before => '[data-hook="buttons"]',
-        :text => '<%= render "spree/admin/taxons/multi_scripts", :object => @taxon -%>',
+        :virtual_path  => "spree/admin/taxons/_form",
+        :insert_top => '[data-hook="admin_inside_taxon_form"]',
+        :text => ' <div class="alpha twelve columns">
+        <%= render "spree/admin/taxons/multi_scripts", :object => @taxon -%>
+        </div>',
         :name    => "taxon_add_language_dropdown")

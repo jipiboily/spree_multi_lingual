@@ -1,19 +1,13 @@
+# could not decorate Spree::Core::ControllerHelpers::Common#set_user_locale
+# so manualy override this method here by including ControllerHelperLocale
+
 Spree::StoreController.class_eval do
-  private
+  include SpreeMultiLingual::ControllerHelperLocale
+end
 
-  # Internal : Set user I18n.locale
-  #
-  # override spree_core set_user_language
-  # initialize user language :
-  #  params[:locale] is explicitly given by routing-filter /:locale
-  # or the session[:locale] set by Spree::LocaleController#set
-  # or I18n.locale set by rack-locale for example
-  # or Spree::Config[:default_locale]
-  # or Rails.application.config.i18n.default_locale
-
-  def set_user_language
-    locale = params[:locale] || session[:locale] || I18n.locale || Rails.application.config.i18n.default_locale
-    locale = I18n.default_locale unless locale && I18n.available_locales.include?(locale.to_sym)
-    I18n.locale = locale.to_sym
-  end
+# spree_devise_auth_devise controllers
+%w{Spree::UserRegistrationsController Spree::UserPasswordsController Spree::UserSessionsController Spree::UsersController}.each do |klass|
+  klass.class_eval do
+    include SpreeMultiLingual::ControllerHelperLocale
+  end if klass = klass.safe_constantize
 end
